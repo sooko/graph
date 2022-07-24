@@ -32,11 +32,10 @@ class LabelY(Label):
 class Graph(FloatLayout):
     min_y_label=StringProperty("0")
     min_x_label=StringProperty("0")
-    
     marker_x_color=ListProperty([1,1,1,.5])
     grid_color=ListProperty([1,1,1,.5])
-    major_x=NumericProperty(10)
-    major_y=NumericProperty(10)
+    major_x=NumericProperty(1)
+    major_y=NumericProperty(1)
     ch1_color   =ListProperty([1,0,0,1])
     ch1_points  =ListProperty([])
     ch1_value   =NumericProperty(50)
@@ -190,11 +189,11 @@ class Graph(FloatLayout):
 
 
     def refresh(self):
-
-        Clock.unschedule(self.create_major_y,.5)
-        Clock.schedule_once(self.create_major_y,.5)
-        Clock.unschedule(self.create_major_x,.5)
-        Clock.schedule_once(self.create_major_x,.5)
+        # pass
+        # Clock.unschedule(self.create_major_y,.5)
+        # Clock.schedule_once(self.create_major_y,.5)
+        # Clock.unschedule(self.create_major_x,.5)
+        # Clock.schedule_once(self.create_major_x,.5)
         self.reset_plot()
 
     def reset_plot(self):
