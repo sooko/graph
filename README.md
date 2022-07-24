@@ -38,6 +38,13 @@ if __name__=="__main__":
 
 ```
 
+### start real time
+
+```
+graph.start_realtime()
+
+```
+
 
 ### 
 
