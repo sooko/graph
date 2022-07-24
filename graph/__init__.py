@@ -39,8 +39,8 @@ class Graph(FloatLayout):
     major_y=NumericProperty(1)
     ch1_color   =ListProperty([1,0,0,1])
     ch1_points  =ListProperty([])
-    ch1_value   =NumericProperty(50)
-    ch1_max     =NumericProperty(100)
+    ch1_value   =NumericProperty(0)
+    ch1_max     =NumericProperty(10)
     ch1_min     =NumericProperty(0)
     
     ch2_color   =ListProperty([0,1,0,1])
@@ -143,14 +143,14 @@ class Graph(FloatLayout):
         plot_pos    =self.plot_area_line.pos   
         stroke      = plot_pos[0]+ (plot_size[0] *self.count/self.div*10)
         self.runing_x_points=[stroke,plot_pos[1],stroke,plot_pos[1]+plot_size[1]]
-        ch1_y      =  plot_pos[1]+ plot_size[1] *self.ch1_value/(self.ch1_max-self.ch1_min)
-        ch2_y      =  plot_pos[1]+ plot_size[1] *self.ch2_value/(self.ch2_max-self.ch2_min)
-        ch3_y      =  plot_pos[1]+ plot_size[1] *self.ch3_value/(self.ch3_max-self.ch3_min)
-        ch4_y      =  plot_pos[1]+ plot_size[1] *self.ch4_value/(self.ch4_max-self.ch4_min)
-        ch5_y      =  plot_pos[1]+ plot_size[1] *self.ch5_value/(self.ch5_max-self.ch5_min)
-        ch6_y      =  plot_pos[1]+ plot_size[1] *self.ch6_value/(self.ch6_max-self.ch6_min)
-        ch7_y      =  plot_pos[1]+ plot_size[1] *self.ch7_value/(self.ch7_max-self.ch7_min)
-        ch8_y      =  plot_pos[1]+ plot_size[1] *self.ch8_value/(self.ch8_max-self.ch8_min)
+        ch1_y      =  plot_pos[1]+ plot_size[1] *(self.ch1_value-self.ch1_min)/(self.ch1_max-self.ch1_min)
+        ch2_y      =  plot_pos[1]+ plot_size[1] *(self.ch2_value-self.ch2_min)/(self.ch2_max-self.ch2_min)
+        ch3_y      =  plot_pos[1]+ plot_size[1] *(self.ch3_value-self.ch3_min)/(self.ch3_max-self.ch3_min)
+        ch4_y      =  plot_pos[1]+ plot_size[1] *(self.ch4_value-self.ch4_min)/(self.ch4_max-self.ch4_min)
+        ch5_y      =  plot_pos[1]+ plot_size[1] *(self.ch5_value-self.ch5_min)/(self.ch5_max-self.ch5_min)
+        ch6_y      =  plot_pos[1]+ plot_size[1] *(self.ch6_value-self.ch6_min)/(self.ch6_max-self.ch6_min)
+        ch7_y      =  plot_pos[1]+ plot_size[1] *(self.ch7_value-self.ch7_min)/(self.ch7_max-self.ch7_min)
+        ch8_y      =  plot_pos[1]+ plot_size[1] *(self.ch8_value-self.ch8_min)/(self.ch8_max-self.ch8_min)
         
         
         if stroke-plot_pos[0]>plot_size[0]:
@@ -231,7 +231,6 @@ class Graph(FloatLayout):
         Clock.schedule_interval(self.do_realtime_plot,.1)
     def stop_realtime(self):
         Clock.unschedule(self.do_realtime_plot,.1)
-    
     def change_y_label(self,min,max,decimal,color):
         self.min_y_label=str(min)
         self.min_y_label_color=color

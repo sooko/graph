@@ -13,6 +13,9 @@ Builder.load_string("""
             color:
         Graph
             id:graph
+            ch1_min:-750
+            ch1_max:750
+            
         BoxLayout:
             orientation: 'vertical'
             size_hint: .1,1#
@@ -24,7 +27,13 @@ Builder.load_string("""
                 on_press:graph.change_y_label(self.min,self.max,0,[1,0,1,1])
             ToggleButton
             ToggleButton
-            
+    Slider:
+        size_hint:1,.1
+        min:-750
+        max:750
+        value:0
+        on_value:graph.ch1_value=self.value
+                    
 
 
             
