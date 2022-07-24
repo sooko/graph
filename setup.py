@@ -14,7 +14,6 @@ setup(
     url = "https://github.com/sooko/graph.git",
     packages=['graph', ],
     long_description=read('README.md'),
-    
     package_data={'': ['graph.kv']},
     include_package_data=True,
     install_requires=[],
