@@ -6,14 +6,10 @@ from kivy.lang.builder import Builder
 from kivy.properties import NumericProperty,StringProperty,ListProperty
 from kivy.graphics import Line,Color
 from kivy.metrics import dp
+Builder.load_file("graph.kv")
 from kivy.clock import Clock
 from kivy.uix.label import Label
 import datetime
-from kivy.resources import resource_add_path
-from kivy.lang import Builder
-import os.path
-resource_add_path(os.path.dirname(__file__))
-Builder.load_file("graph.kv")
 
 class LabelX(Label):
     pass
