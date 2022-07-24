@@ -1,24 +1,6 @@
 <LabelX>:
     # font_size:self.height
-
 <LabelY>
-    # font_size:self.height
-    # size_hint:1,None
-<GridX>:
-    # font_size:self.height
-    canvas:
-        Color:
-            rgba:root.color
-        Line:
-            points:self.x,self.y,self.x,self.y+self.height
-<GridY>:
-    canvas:
-        Color:
-            rgba:root.color
-        Line:
-            points:self.x,self.y,self.x+self.width,self.y
-        
-
     # font_size:self.height
 
 
@@ -27,9 +9,6 @@
     plot_area_line:plot_area_line
     root_x_label:root_x_label
     root_y_label:root_y_label
-    root_grid_x:root_grid_x
-    root_grid_y:root_grid_y
-    
 
 
     BoxLayout:
@@ -40,7 +19,6 @@
             size_hint: None, 1
             width: min(root.size)*.15
             BoxLayout:
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 orientation:"vertical"
                 id:root_y_label
                 canvas.before:
@@ -50,18 +28,15 @@
                 canvas.after:
                     PopMatrix:
                 
-            FloatLayout:
+            Label:
+                text: "0"
+                color:
+                id:deat
                 size_hint:1,None
-                height:min(root.size)*.07
-                Label
-                    pos_hint:{'center_x':.5,"center_y":1}
-                    text: root.min_y_label
-                    font_size:self.height*.5
-                Label:
-                    pos_hint:{'center_x':1,"center_y":.5}
-                    text: root.min_x_label
-                    font_size:self.height*.5
-                
+                height:min(root.size)*.05
+                halign:"right"
+                valign:"top"
+                text_size:self.size
 
         BoxLayout:
             orientation:'vertical'
@@ -75,14 +50,6 @@
                 Widget:
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     id:plot_area
-                BoxLayout:
-                    orientation:"vertical"
-                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                    id:root_grid_y
-                BoxLayout:
-                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                    id:root_grid_x
-                
                 Widget:
                     id:plot_area_line
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
@@ -144,4 +111,6 @@
                 canvas.after:
                     PopMatrix:
 
- 
+    Slider:
+        max:100
+        on_value:root.ch1_value=int(self.value)

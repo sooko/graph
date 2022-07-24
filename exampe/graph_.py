@@ -12,17 +12,8 @@ import datetime
 from kivy.resources import resource_add_path
 from kivy.lang import Builder
 import os.path
-from kivy.uix.widget import Widget
-from kivy.uix.button import Button
 resource_add_path(os.path.dirname(__file__))
 Builder.load_file("graph.kv")
-
-class GridX(Widget):
-    # pass
-    color=ListProperty([1,1,1,1])
-class GridY(Widget):
-    # pass
-    color=ListProperty([1,1,1,1])
 
 class LabelX(Label):
     pass
@@ -30,13 +21,12 @@ class LabelY(Label):
     pass
 
 class Graph(FloatLayout):
-    min_y_label=StringProperty("0")
-    min_x_label=StringProperty("0")
-    
+
     marker_x_color=ListProperty([1,1,1,.5])
-    grid_color=ListProperty([1,1,1,.5])
-    major_x=NumericProperty(10)
-    major_y=NumericProperty(10)
+    major_x=NumericProperty(1)
+    major_y=NumericProperty(1)
+    
+
     ch1_color   =ListProperty([1,0,0,1])
     ch1_points  =ListProperty([])
     ch1_value   =NumericProperty(50)
@@ -117,25 +107,27 @@ class Graph(FloatLayout):
     
     def create_major_x(self,dt):
         self.root_x_label.clear_widgets()
-        self.root_grid_x.clear_widgets()
+        size  =self.plot_area.size
+        pos   =self.plot_area.pos
         for i in range(self.major_x):
+            scale=size[0] * i / self.major_x
             self.root_x_label.add_widget(LabelX(font_size=self.root_x_label.height*.5,text=str(1+i)))
-            self.root_grid_x.add_widget(GridX(color=self.grid_color))
-            
-            
-
-            
-           
+            with self.plot_area.canvas:
+                Color(rgba=self.marker_x_color)
+                Line(points=[pos[0]+scale,pos[1] , pos[0]+scale,pos[1]+size[1] ])
 
 
     def create_major_y(self,dt):
         self.root_y_label.clear_widgets()
-        self.root_grid_y.clear_widgets()
+
+        size  =self.plot_area.size
+        pos   =self.plot_area.pos
         for i in range(self.major_y):
+            scale= (size[1] * i/self.major_y) + (size[1] /self.major_y)
             self.root_y_label.add_widget(LabelY(font_size=self.root_x_label.height*.5,text=str(self.major_y-i)))
-            self.root_grid_y.add_widget(GridY(color=self.grid_color))
-            
-            
+            with self.plot_area.canvas:
+                Color(rgba=self.marker_x_color)
+                Line(points=[pos[0],pos[1]+scale , pos[0] + size[0] ,pos[1]+scale ])
 
 
     def do_realtime_plot(self,dt):
@@ -190,15 +182,18 @@ class Graph(FloatLayout):
 
 
     def refresh(self):
+        self.plot_area.canvas.clear()
 
         Clock.unschedule(self.create_major_y,.5)
         Clock.schedule_once(self.create_major_y,.5)
         Clock.unschedule(self.create_major_x,.5)
         Clock.schedule_once(self.create_major_x,.5)
         self.reset_plot()
-
     def reset_plot(self):
- 
+        self.translate_x=0
+        self.count=0
+
+
         self.ch1_point.clear()#append([stroke,ch1_y])
         self.ch2_point.clear()#append([stroke,ch2_y])
         self.ch3_point.clear()#append([stroke,ch3_y])
@@ -219,10 +214,6 @@ class Graph(FloatLayout):
 
 
         
-        self.count=0
-        self.translate_x=0
-
-
         
 
     def start_realtime(self):
@@ -233,16 +224,3 @@ class Graph(FloatLayout):
     def stop_realtime(self):
         Clock.unschedule(self.do_realtime_plot,.1)
     
-    def change_y_label(self,min,max,decimal):
-        self.min_y_label=str(min)
-        self.root_y_label.clear_widgets()
-        for i in range(self.major_y):
-            if decimal!=0:
-                lbl=str(round(max - i*(max-min)/self.major_y,decimal))
-            else:
-                lbl=str(round(max - i*(max-min)/self.major_y))
-            self.root_y_label.add_widget(LabelY(font_size=self.root_x_label.height*.5,text=lbl))
-
-
-
-

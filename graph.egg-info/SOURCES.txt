@@ -1,6 +1,7 @@
 README.md
 setup.py
 graph/__init__.py
+graph/graph.kv
 graph.egg-info/PKG-INFO
 graph.egg-info/SOURCES.txt
 graph.egg-info/dependency_links.txt

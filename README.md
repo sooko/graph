@@ -15,7 +15,7 @@ git clone https://github.com/sooko/graph.git
 cd graph
 python setup.py install
 ```
-### Usage
+## Usage
 
 ### Code Example
 
@@ -39,9 +39,11 @@ if __name__=="__main__":
 ```
 
 
+### 
+
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Mochamad Burhanudin
+ex. Mochamad Burhanudin +6285732525914
