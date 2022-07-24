@@ -32,6 +32,7 @@ class LabelY(Label):
 class Graph(FloatLayout):
     min_y_label=StringProperty("0")
     min_x_label=StringProperty("0")
+    min_y_label_color=ListProperty([1,1,1,1])
     marker_x_color=ListProperty([1,1,1,.5])
     grid_color=ListProperty([1,1,1,.5])
     major_x=NumericProperty(1)
@@ -195,7 +196,6 @@ class Graph(FloatLayout):
         # Clock.unschedule(self.create_major_x,.5)
         # Clock.schedule_once(self.create_major_x,.5)
         self.reset_plot()
-
     def reset_plot(self):
  
         self.ch1_point.clear()#append([stroke,ch1_y])
@@ -232,15 +232,17 @@ class Graph(FloatLayout):
     def stop_realtime(self):
         Clock.unschedule(self.do_realtime_plot,.1)
     
-    def change_y_label(self,min,max,decimal):
+    def change_y_label(self,min,max,decimal,color):
         self.min_y_label=str(min)
+        self.min_y_label_color=color
+
         self.root_y_label.clear_widgets()
         for i in range(self.major_y):
             if decimal!=0:
                 lbl=str(round(max - i*(max-min)/self.major_y,decimal))
             else:
                 lbl=str(round(max - i*(max-min)/self.major_y))
-            self.root_y_label.add_widget(LabelY(font_size=self.root_x_label.height*.5,text=lbl))
+            self.root_y_label.add_widget(LabelY(color=color,font_size=self.root_x_label.height*.5,text=lbl))
 
 
 

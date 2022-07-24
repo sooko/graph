@@ -45,7 +45,7 @@ graph.start_realtime()
 ```
 ### change Y label
 ```
-self.graph.change_y_label(self,min,max,decimal)
+self.graph.change_y_label(self,min,max,decimal,color)
 
 ```
 

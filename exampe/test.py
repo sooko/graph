@@ -21,7 +21,7 @@ Builder.load_string("""
             ToggleButton
                 min:-7500
                 max:7500
-                on_press:graph.change_y_label(self.min,self.max,2)
+                on_press:graph.change_y_label(self.min,self.max,0,[1,0,1,1])
             ToggleButton
             ToggleButton
             
