@@ -44,6 +44,11 @@ if __name__=="__main__":
 graph.start_realtime()
 
 ```
+### change Y label
+```
+self.graph.change_y_label(self,min,max,decimal)
+
+```
 
 
 ### 
