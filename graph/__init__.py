@@ -194,12 +194,3 @@ class Graph(FloatLayout):
     
     
     
-
-from kivy.app import App
-class MyAPP(App):
-    def build(self):
-        return Graph()
-
-
-if __name__=="__main__":
-    MyAPP().run()
