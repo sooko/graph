@@ -1,0 +1,114 @@
+<LabelX>:
+    # font_size:self.height
+<LabelY>
+    # font_size:self.height
+
+
+<Graph>:
+    plot_area:plot_area
+    plot_area_line:plot_area_line
+    root_x_label:root_x_label
+    root_y_label:root_y_label
+
+
+    BoxLayout:
+        # size_hint:.98,.98
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, 1
+            width: min(root.size)*.15
+            BoxLayout:
+                orientation:"vertical"
+                id:root_y_label
+                canvas.before:
+                    PushMatrix:
+                    Translate:
+                        y:self.height/root.major_y/2
+                canvas.after:
+                    PopMatrix:
+                
+            Label:
+                text: "0"
+                color:
+                id:deat
+                size_hint:1,None
+                height:min(root.size)*.05
+                halign:"right"
+                valign:"top"
+                text_size:self.size
+
+        BoxLayout:
+            orientation:'vertical'
+            FloatLayout:
+                
+                canvas.after:
+                    Color:
+                        rgba:1,1,1,1
+                    Line:
+                        rectangle:(self.x,self.y,self.width,self.height)
+                Widget:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    id:plot_area
+                Widget:
+                    id:plot_area_line
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    canvas.before:
+                        PushMatrix
+                        Translate:
+                            x:root.translate_x
+                        Color:
+                            rgba:   [1,1,1,1]
+                        Line:
+                            points:root.runing_x_points
+                            width:dp(1)
+                        Color:
+                            rgba:   root.ch1_color
+                        Line:                           
+                            points: root.ch1_points
+                        Color:
+                            rgba:   root.ch2_color
+                        Line:                        
+                            points: root.ch2_points
+                        Color:
+                            rgba:   root.ch3_color
+                        Line:                        
+                            points: root.ch3_points
+
+                        Color:
+                            rgba:   root.ch4_color
+                        Line:                         
+                            points: root.ch4_points
+                        Color:
+                            rgba:   root.ch5_color
+                        Line:                         
+                            points: root.ch5_points
+                        Color:
+                            rgba:   root.ch6_color
+                        Line:                        
+                            points: root.ch6_points
+
+                        Color:
+                            rgba:   root.ch7_color
+                        Line:                         
+                            points: root.ch7_points
+
+                        Color:
+                            rgba:   root.ch8_color
+                        Line:                       
+                            points: root.ch8_points
+                    canvas.after:
+                        PopMatrix
+
+            BoxLayout
+                id:root_x_label
+                size_hint:1,None
+                height:min(root.size)*.07
+                canvas.before:
+                    PushMatrix:
+                    Translate:
+                        x:self.width/root.major_x/2
+                canvas.after:
+                    PopMatrix:
+
+ 
