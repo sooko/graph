@@ -231,6 +231,7 @@ class Graph(FloatLayout):
         Clock.schedule_interval(self.do_realtime_plot,.1)
     def stop_realtime(self):
         Clock.unschedule(self.do_realtime_plot,.1)
+        
     def change_y_label(self,min,max,decimal,color):
         self.min_y_label=str(min)
         self.min_y_label_color=color
